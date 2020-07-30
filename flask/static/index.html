@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Feed Winston & Karol</title>
+  </head>
+  <body class="bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" style="height: 50px;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" style="height: 400px;">
+        </div>
+      </div>
+      <div class="row actions">
+        <div class="col-6">
+          <center><button type="button" id="snack" class="btn btn-dark btn-lg">Snack!</button></center>
+        </div>
+        <div class="col-6">
+          <center><button type="button"  id="meal" class="btn btn-dark btn-lg">Full Meal!</button></center>
+        </div>
+      </div>
+      <div class="row message d-none">
+        <div class="col-12 ">
+          <center><button type="button" class="btn btn-warning">Thanks! Feeding in progress.<br/> Check the Cat Cam!</button></center>
+        </div>
+      </div>
+      <div class="row message2 d-none">
+        <div class="col-12 ">
+          <center><button type="button" id="message2" class="btn btn-success"></button></center>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function(){
+        $( "#snack" ).click(function() {
+          $( ".actions" ).toggleClass( "d-none" );
+          $( ".message" ).toggleClass( "d-none" );
+
+          $.post( "/snack", function( data ) {
+            $( ".message" ).toggleClass( "d-none" );
+            $( ".message2" ).toggleClass( "d-none" );
+            $( "#message2" ).html( data );
+          });
+
+        });
+        $( "#meal" ).click(function() {
+          $( ".actions" ).toggleClass( "d-none" );
+          $( ".message" ).toggleClass( "d-none" );
+
+          $.post( "/meal", function( data ) {
+            $( ".message" ).toggleClass( "d-none" );
+            $( ".message2" ).toggleClass( "d-none" );
+            $( "#message2" ).html( data );
+          });
+
+        });
+        $( "#message2" ).click(function() {
+          $( ".actions" ).toggleClass( "d-none" );
+          $( ".message2" ).toggleClass( "d-none" );
+        });
+    });
+
+    </script>
+  </body>
+</html>

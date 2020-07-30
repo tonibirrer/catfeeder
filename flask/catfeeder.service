@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve cat feeder
+After=network.target
+
+[Service]
+User=root
+Group=nginx
+WorkingDirectory=/home/catfeeder/flask
+Environment="PATH=/home/catfeeder/virtualenv/bin"
+ExecStart=/home/catfeeder/virtualenv/bin/gunicorn --workers 1 --bind unix:catfeeder.sock -m 007 wsgi
+
+[Install]
+WantedBy=multi-user.target
